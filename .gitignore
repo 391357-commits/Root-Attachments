@@ -47,3 +47,7 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+# Project Specific Secrets and Data
+.env
+data/users.json
+data/games.json

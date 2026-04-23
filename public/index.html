@@ -1,1 +1,25 @@
-<p> Hello World! </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Tic Tac Toe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Tic Tac Toe AI</h1>
+    
+    <div id="auth-box">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="auth('register')">Sign Up</button>
+        <button onclick="auth('login')">Login</button>
+    </div>
+
+    <div id="game-controls" style="display:none">
+        <p>Welcome, <span id="display-user"></span>!</p>
+        <button onclick="location.reload()">Logout</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
