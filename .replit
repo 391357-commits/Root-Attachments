@@ -29,3 +29,27 @@ DATABASE_URL = "postgresql://postgres:password@helium/heliumdb?sslmode=disable"
 
 [nix]
 packages = ["killall"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node server.js"
+waitForPort = 8080
+
+[workflows.workflow.metadata]
+outputType = "webview"
