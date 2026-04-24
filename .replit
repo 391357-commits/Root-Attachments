@@ -20,3 +20,12 @@ externalPort = 8081
 
 [agent]
 expertMode = true
+
+[userenv]
+
+[userenv.shared]
+PORT = "8080"
+DATABASE_URL = "postgresql://postgres:password@helium/heliumdb?sslmode=disable"
+
+[nix]
+packages = ["killall"]
