@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match in Progress</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+        <nav><a href="checkpoints.html" class="nav-link">View My Build Process</a></nav>
+    </header>
+
+    <main class="game-container">
+        <div id="game-board-area" class="panel">
+
+            <div class="status-header">
+                <h2 id="turn-indicator">Player X's Turn</h2>
+                <button onclick="window.location.href='main.html'" class="btn danger-btn small-btn">Quit Game</button>                
+            </div>
+
+            <div id="ai-chatter" class="chatter-box" style="display: none;">
+                🤖 AI says: "I'm ready to crush you!"
+            </div>
+
+            <div class="grid">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <button id="reset-btn" class="btn secondary-btn">Restart Board</button>
+                
+        </div>
+    </main>
+
+    <script src="board.js"></script> 
+</body>
+</html>

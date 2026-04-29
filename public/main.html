@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Setup</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Tic Tac Toe</h1>
+    </header>
+
+    <main class="game-container">
+        <div id="game-setup" class="panel">
+            <h2>Game Setup</h2>
+
+            <div class="form-group">
+                <label for="game-mode">Select Mode:</label>
+                <select id="game-mode">
+                    <option value="2-player">2 Player (Local)</option>
+                    <option value="bot">Play against AI Bot</option>
+                </select>
+            </div>
+
+            <div id="ai-settings" style="display: none;">
+                <div class="form-group">
+                    <label for="ai-difficulty">AI Difficulty:</label>
+                    <select id="ai-difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ai-personality">AI Personality:</label>
+                    <select id="ai-personality">
+                        <option value="friendly">Encouraging & Friendly</option>
+                        <option value="trash-talker">Trash Talker</option>
+                        <option value="sarcastic">Sarcastic</option>
+                    </select>
+                </div>
+            </div>
+            <button id="start-game-btn" class="btn primary-btn">Start Match</button>
+        </div>
+        <div class="form-group">
+            <label for="piece-select">Choose your piece:</label>
+            <select id="piece-select">
+                <option value="classic">Classic (X vs O)</option>
+                <option value="shapes">Shapes (🟦 vs 🔺)</option>
+                <option value="emojis">Emojis (🌮 vs 🍔)</option>
+            </select>
+        </div>
+    </main>
+
+    <script src="main.js"></script> 
+</body>
+</html>
