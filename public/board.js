@@ -1,7 +1,9 @@
-// 1. Read the URL for mode AND piece choice
+// 1. Read the URL for mode, piece choice, AND names
 const urlParams = new URLSearchParams(window.location.search);
 const isBotMode = urlParams.get('mode') === 'bot';
 const pieceStyle = urlParams.get('piece') || 'classic'; 
+const player1Name = urlParams.get('p1') || 'Player 1';
+const player2Name = urlParams.get('p2') || 'Player 2';
 
 // 2. Set the symbols based on what the user picked
 let player1Symbol = 'X';
@@ -24,6 +26,9 @@ const cells = document.querySelectorAll('.cell');
 const turnIndicator = document.getElementById('turn-indicator');
 const resetBtn = document.getElementById('reset-btn');
 
+// Immediately update the text with the starting player's name
+turnIndicator.innerText = `${player1Name}'s Turn (${player1Symbol})`;
+
 // 4. Handle a cell click
 function handleCellClick(e) {
     const cell = e.target;
@@ -37,7 +42,7 @@ function handleCellClick(e) {
     // If bot mode, the bot takes its turn
     if (isBotMode && gameActive && currentPlayer === player2Symbol) {
         gameActive = false; 
-        turnIndicator.innerText = "Bot is thinking...";
+        turnIndicator.innerText = `${player2Name} is thinking...`;
         setTimeout(makeBotMove, 500);
     }
 }
@@ -51,8 +56,11 @@ function playTurn(index, cell) {
     const cssClass = currentPlayer === player1Symbol ? 'x' : 'o';
     cell.classList.add(cssClass);
 
+    // Figure out whose name goes with the current symbol
+    const currentName = currentPlayer === player1Symbol ? player1Name : player2Name;
+
     if (checkWinner()) {
-        turnIndicator.innerText = `${currentPlayer} Wins!`;
+        turnIndicator.innerText = `🎉 ${currentName} Wins! 🎉`;
         gameActive = false;
         return;
     }
@@ -66,8 +74,11 @@ function playTurn(index, cell) {
     // Switch turns between custom symbols
     currentPlayer = currentPlayer === player1Symbol ? player2Symbol : player1Symbol;
 
+    // Figure out who is up next
+    const nextName = currentPlayer === player1Symbol ? player1Name : player2Name;
+
     if (currentPlayer === player1Symbol || !isBotMode) {
-        turnIndicator.innerText = `${currentPlayer}'s Turn`;
+        turnIndicator.innerText = `${nextName}'s Turn (${currentPlayer})`;
     }
 }
 
@@ -107,7 +118,7 @@ resetBtn.addEventListener('click', () => {
     board = ['', '', '', '', '', '', '', '', ''];
     currentPlayer = player1Symbol;
     gameActive = true;
-    turnIndicator.innerText = `${player1Symbol}'s Turn`;
+    turnIndicator.innerText = `${player1Name}'s Turn (${player1Symbol})`; // Reset uses P1 name
     cells.forEach(cell => {
         cell.innerText = '';
         cell.classList.remove('x', 'o'); // Remove colors on reset

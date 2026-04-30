@@ -37,18 +37,23 @@ header h1 {
     max-width: 450px;
 }
 
-.panel {
+/* Added #auth-box and #game-controls so they automatically look like panels */
+.panel, #auth-box, #game-controls {
     background-color: #1e293b;
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
 }
 
-.panel h2 {
+.panel h2, #auth-box h2 {
     margin-top: 0;
     text-align: center;
     color: #e2e8f0;
+    margin-bottom: 20px;
 }
 
 /* Forms and Inputs */
@@ -63,7 +68,10 @@ header h1 {
     color: #cbd5e1;
 }
 
-select {
+/* Added text and password inputs to match the select dropdowns */
+select, 
+input[type="text"], 
+input[type="password"] {
     width: 100%;
     padding: 10px;
     border-radius: 6px;
@@ -71,15 +79,22 @@ select {
     color: white;
     border: 1px solid #475569;
     font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 15px; /* Adds space between inputs */
 }
 
-select:focus {
+select:focus, 
+input[type="text"]:focus, 
+input[type="password"]:focus {
     outline: none;
     border-color: #38bdf8;
 }
 
 /* Buttons */
-.btn {
+.btn, 
+#auth-box button, 
+.menu-actions button, 
+#game-area button {
     width: 100%;
     padding: 12px;
     border: none;
@@ -89,27 +104,50 @@ select:focus {
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 10px;
-}
-
-.primary-btn {
-    background-color: #0ea5e9;
+    background-color: #0ea5e9; /* Default to primary blue */
     color: white;
 }
 
+/* Flexbox for side-by-side buttons in index.html */
+.auth-buttons, .menu-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button, .menu-actions button {
+    margin-top: 0;
+    flex: 1; /* Makes them equal width */
+}
+
+/* Specific button colors */
+.btn:hover, #auth-box button:hover, .menu-actions button:hover { 
+    background-color: #0284c7; 
+}
+
+/* Make the Logout button red automatically */
+.menu-actions button:last-child {
+    background-color: #ef4444;
+}
+.menu-actions button:last-child:hover {
+    background-color: #dc2626;
+}
+
+/* Make the Reset Board button grey automatically */
+#game-area button {
+    background-color: #475569;
+    margin-top: 20px;
+}
+#game-area button:hover {
+    background-color: #334155;
+}
+
+.primary-btn { background-color: #0ea5e9; color: white; }
 .primary-btn:hover { background-color: #0284c7; }
 
-.secondary-btn {
-    background-color: #475569;
-    color: white;
-}
-
+.secondary-btn { background-color: #475569; color: white; }
 .secondary-btn:hover { background-color: #334155; }
 
-.danger-btn {
-    background-color: #ef4444;
-    color: white;
-}
-
+.danger-btn { background-color: #ef4444; color: white; }
 .danger-btn:hover { background-color: #dc2626; }
 
 .small-btn {
@@ -130,11 +168,20 @@ select:focus {
     margin: 0;
 }
 
+/* Centered turn indicator for index.html */
+#turn-indicator {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #e2e8f0;
+}
+
 .chatter-box {
     background-color: #334155;
     padding: 10px;
     border-radius: 6px;
-    border-left: 4px solid #a855f7; /* Purple accent for AI */
+    border-left: 4px solid #a855f7;
     margin-bottom: 20px;
     font-style: italic;
     color: #f1f5f9;
@@ -149,7 +196,7 @@ select:focus {
 
 .cell {
     background-color: #334155;
-    aspect-ratio: 1 / 1; /* Keeps cells perfectly square */
+    aspect-ratio: 1 / 1;
     border-radius: 8px;
     display: flex;
     align-items: center;
