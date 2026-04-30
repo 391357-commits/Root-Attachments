@@ -1,12 +1,11 @@
-
-const DATA_DIR = path.join(__dirname, 'data');
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR);
-
 const express = require('express');
 const session = require('express-session');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+
+const DATA_DIR = path.join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR);
 
 const app = express();
 const PORT = 8080; // Replit's preferred port
