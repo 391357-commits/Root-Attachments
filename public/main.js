@@ -20,11 +20,7 @@ async function auth(action) {
 
         if (response.ok) {
             if (action === 'login') {
-                document.getElementById('auth-box').style.display = 'none';
-                const controls = document.getElementById('game-controls');
-                if (controls) controls.style.display = 'block';
-                const displayUser = document.getElementById('display-user');
-                if (displayUser) displayUser.textContent = data.username || username;
+                window.location.href = 'main.html';
             } else {
                 alert(data.message);
             }
