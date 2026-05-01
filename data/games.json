@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "mode": "Player vs Player",
+    "winner": "Player 1",
+    "time": "5/1/2026, 11:22:06 AM"
+  },
+  {
+    "mode": "Player vs Player",
+    "winner": "Lowgyn ",
+    "time": "5/1/2026, 11:22:38 AM"
+  },
+  {
+    "mode": "Player vs Player",
+    "players": "Player 1 vs Player 2",
+    "winner": "Player 1",
+    "time": "5/1/2026, 11:34:56 AM"
+  },
+  {
+    "mode": "Player vs Bot",
+    "players": "lowgyn vs Bot",
+    "winner": "Bot",
+    "time": "5/1/2026, 11:35:24 AM"
+  },
+  {
+    "mode": "Player vs Bot",
+    "players": "Player 1 vs Bot",
+    "winner": "Player 1",
+    "time": "5/1/2026, 11:35:39 AM"
+  }
+]

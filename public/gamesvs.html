@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Leaderboard & History</h1>
+        <nav><a href="main.html" class="nav-link">Back to Main Menu</a></nav>
+    </header>
+
+    <main class="game-container">
+        <div class="panel">
+            <h2>Recent Matches</h2>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 15px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid #38bdf8;">
+                        <th style="padding: 10px;">Mode</th>
+                        <th style="padding: 10px;">Matchup</th> <th style="padding: 10px;">Winner</th>
+                        <th style="padding: 10px;">Date & Time</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    </tbody>
+            </table>
+
+        </div>
+    </main>
+
+    <script src="leaderboard.js"></script> 
+</body>
+</html>

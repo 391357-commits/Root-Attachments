@@ -19,7 +19,9 @@ app.use(session({
     saveUninitialized: true
 }));
 
+// Define file paths
 const USERS_FILE = path.join(__dirname, 'data', 'users.json');
+const GAMES_FILE = path.join(__dirname, 'data', 'games.json'); // NEW: Added games path
 
 // Helpers
 const getUsers = () => JSON.parse(fs.readFileSync(USERS_FILE, 'utf8') || '[]');
@@ -32,7 +34,7 @@ app.post('/register', (req, res) => {
     if (users.find(u => u.username === username)) {
         return res.status(400).json({ message: "User already exists" });
     }
-    users.push({ username, password }); // Plaintext per project rules [cite: 67]
+    users.push({ username, password }); // Plaintext per project rules
     saveUsers(users);
     res.json({ message: "Success! You can now log in." });
 });
@@ -46,6 +48,51 @@ app.post('/login', (req, res) => {
         return res.json({ message: "Welcome back!", username: user.username });
     }
     res.status(401).json({ message: "Invalid credentials" });
+});
+
+// NEW ROUTE: Save match data
+app.post('/save-game', (req, res) => {
+    const newMatch = req.body; // Gets { mode, winner, time } from board.js
+
+    // 1. Read the current games.json from the data folder
+    fs.readFile(GAMES_FILE, 'utf8', (err, data) => {
+        let games = [];
+        if (!err && data) {
+            try {
+                games = JSON.parse(data);
+            } catch (e) {
+                console.log("Empty or invalid JSON, starting fresh.");
+            }
+        }
+
+        // 2. Add the new match to the array
+        games.push(newMatch);
+
+        // 3. Write it back to the file
+        fs.writeFile(GAMES_FILE, JSON.stringify(games, null, 2), (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Failed to save game' });
+            }
+            res.json({ message: 'Match saved successfully!' });
+        });
+    });
+});
+
+// NEW ROUTE: Send match data to the leaderboard
+app.get('/get-games', (req, res) => {
+    fs.readFile(GAMES_FILE, 'utf8', (err, data) => {
+        if (err || !data) {
+            // If the file doesn't exist or is empty, just send an empty array
+            return res.json([]); 
+        }
+        try {
+            const games = JSON.parse(data);
+            res.json(games);
+        } catch (e) {
+            res.json([]);
+        }
+    });
 });
 
 app.listen(PORT, () => console.log(`Server active on port ${PORT}`));

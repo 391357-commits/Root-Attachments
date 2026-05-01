@@ -62,12 +62,18 @@ function playTurn(index, cell) {
     if (checkWinner()) {
         turnIndicator.innerText = `🎉 ${currentName} Wins! 🎉`;
         gameActive = false;
+
+        // NEW: Tell the server to save the winner!
+        saveMatchData(currentName);
         return;
     }
 
     if (!board.includes('')) {
         turnIndicator.innerText = "It's a Draw!";
         gameActive = false;
+
+        // NEW: Tell the server to save the draw!
+        saveMatchData("Draw");
         return;
     }
 
@@ -124,3 +130,31 @@ resetBtn.addEventListener('click', () => {
         cell.classList.remove('x', 'o'); // Remove colors on reset
     });
 });
+
+// ==========================================
+// NEW: DATABASE SAVE FUNCTION
+// ==========================================
+async function saveMatchData(winnerName) {
+    const matchData = {
+        mode: isBotMode ? "Player vs Bot" : "Player vs Player",
+        players: `${player1Name} vs ${player2Name}`, // Saves who fought who!
+        winner: winnerName,
+        time: new Date().toLocaleString()
+    }; // Notice there is no extra bracket here anymore!
+
+    try {
+        const response = await fetch('/save-game', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(matchData)
+        });
+
+        if (response.ok) {
+            console.log("Match successfully saved to database!");
+        }
+    } catch (err) {
+        console.error("Failed to save match:", err);
+    }
+}
