@@ -14,8 +14,14 @@
     <main>
         <div id="auth-box">
             <h2>Login or Sign Up</h2>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Username">
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password">
+            </div>
             <div class="auth-buttons">
                 <button onclick="auth('register')">Sign Up</button>
                 <button onclick="auth('login')">Login</button>
